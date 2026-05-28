@@ -43,4 +43,8 @@ public class ReservationEntity {
             , nullable = true) // esto se debe a que 1 reservacion puede tener un hotel o un tour, nunca los 2
     private TourEntity tour;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id"
+            , nullable = true)
+    private CustomerEntity customer;
 }

@@ -1,8 +1,9 @@
 package com.jv.best_travel.domain.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,5 +23,21 @@ public class CustomerEntity {
     private int totalTours;
     private String phoneNumber;
 
+    @OneToMany(cascade = CascadeType.ALL
+            , fetch = FetchType.EAGER
+            , orphanRemoval = true
+            , mappedBy = "customer")
+    private List<TicketEntity> tickets;
 
+    @OneToMany(cascade = CascadeType.ALL
+            , fetch = FetchType.EAGER
+            , orphanRemoval = true
+            , mappedBy = "customer")
+    private List<TourEntity> tours;
+
+    @OneToMany(cascade = CascadeType.ALL
+            , fetch = FetchType.EAGER
+            , orphanRemoval = true
+            , mappedBy = "customer")
+    private List<ReservationEntity> reservations;
 }
